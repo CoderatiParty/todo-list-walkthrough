@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 if os.path.isfile('env.py'):
     import env
@@ -86,7 +87,9 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 # }
 
 
-DATABASES = os.environ.get('DATABASE_URL')
+DATABASES = {
+'default': dj_database_url.config(default='os.environ.get("DATABASE_URL")')
+}
 
 
 # Password validation
